@@ -41,7 +41,7 @@ Featuring an ultra-low overhead procedural rendering pipeline and an asynchronou
 | **USB/BT Polling Rate** | Measured controller packet transmission frequency in Hz (e.g., 250Hz, 500Hz, 1000Hz). |
 | **Controller Input Delay** | Polling cycle delay calculated as $1000 / \text{Hz}$. |
 | **D3D12 Render Latency** | Time taken by DirectX 12 to compose and submit the frame. |
-| **Display Monitor Latency** | Average display scanout delay calculated from active monitor refresh rate ($1000 / (2 \times \text{Hz})$). |
+| **Display Monitor Latency** | Average display scanout delay calculated from the active monitor's refresh rate (1000/(2×Hz)). |
 | **Stick Hardware Latency** | Sensor delay (Potentiometer / Hall Effect / TMR), adjustable from 0 to 100 ms (measured via slow-mo camera). |
 | **Jitter + Human Delay** | Human thumb actuation velocity deviation relative to theoretical digital limits. |
 | **Best Record Time** | Lowest reaction time recorded during the active session. |

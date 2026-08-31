@@ -1,7 +1,7 @@
 # ULT: Ultimate Latency Tester (DirectX 12)
 
 <p align="center">
-  <strong>Benchmark & Diagnostica ad Altissime Prestazioni per la Misurazione della Latenza dei Controller su Windows</strong>
+  <strong>Ultra High-Performance Hardware Controller Latency & Input Lag Benchmark for Windows</strong>
 </p>
 
 <p align="center">
@@ -13,146 +13,146 @@
 
 ---
 
-## 📖 Panoramica
+## 📖 Overview
 
-**ULT (Ultimate Latency Tester)** è un'applicazione nativa per Windows in **DirectX 12** progettata per misurare con precisione sub-millisecondo la latenza di risposta reale (Input Lag totale) di qualsiasi controller da gioco quando si sposta la levetta analogica dal centro a 90° a destra.
+**ULT (Ultimate Latency Tester)** is a native **DirectX 12** Windows benchmark engineered to measure real hardware response time (Total Input Lag) of any gaming controller with sub-millisecond precision by tracking analog stick displacement from center to 90° right.
 
-Il motore grafico a bassissimo overhead e la pipeline multithread a **2000Hz** garantiscono framerate estremi (oltre 500+ FPS) per isolare l'hardware ed eliminare i colli di bottiglia di CPU e GPU.
-
----
-
-## ⚡ Caratteristiche Principali
-
-* **Motore DirectX 12 Low-Latency**: Utilizza `DXGI_SWAP_EFFECT_FLIP_DISCARD` e DirectFlip per azzerare il buffering del compositore di Windows (DWM).
-* **Ambiente 3D Raymarched Procedurale**: Pavimento a scacchiera prospettico, mirino centrale rosso ad alta definizione e linea target verde smeraldo a 90°.
-* **Cronometro Sub-Millisecondo ad Alta Risoluzione**: Basato su `QueryPerformanceCounter` (QPC), parte al primo impulso oltre la deadzone e si arresta al raggiungimento esatto dei 90°.
-* **Thread di Polling Input Dedicato a 2000Hz**: Interrogazione asincrona non bloccante dei pacchetti hardware grezzi.
-* **Device Watcher Asincrono a 0 Stutter**: Riconnessione e disconnessione USB/Bluetooth fluida senza cali di framerate.
-* **Controllo Hardware Lightbar DualShock 4 & DualSense 5**: Impostazione automatica via report HID sul colore Cyan Elettrico / Blu Neon.
-* **Interfaccia Grafica Moderna (Dark Frosted Glass)**: Card in vetro acrilico scuro, chip opzione segmentati, badge telemetrici in tempo reale e bandiere di selezione lingua (Italiano 🇮🇹 / English 🇬🇧).
+Featuring an ultra-low overhead procedural rendering pipeline and an asynchronous **2000Hz** input polling thread, ULT delivers extreme framerates (500+ FPS) to isolate hardware bottlenecks and benchmark pure input-to-display latency.
 
 ---
 
-## 📊 Telemetria Misurata in Tempo Reale
+## ⚡ Key Features
 
-| Metrica | Descrizione |
+* **Low-Latency DirectX 12 Engine**: Built with `DXGI_SWAP_EFFECT_FLIP_DISCARD` and DirectFlip swapchain to eliminate Desktop Window Manager (DWM) composition buffering.
+* **Procedural Raymarched 3D Environment**: High-contrast perspective checkerboard floor, precision red vertical crosshair sightline with dynamic glow, and emerald-green 90° target line.
+* **High-Precision Sub-Millisecond Stopwatch**: Driven by Windows `QueryPerformanceCounter` (QPC); triggers instantly on the first input past deadzone and locks time exactly at 90°.
+* **Dedicated 2000Hz Input Polling Thread**: Asynchronous hardware HID packet acquisition completely decoupled from the render loop.
+* **Zero-Stutter Asynchronous Device Watcher**: Hotplugging USB or Bluetooth controllers produces zero frame drops or rendering stutters.
+* **Hardware Lightbar Control (DualShock 4 & DualSense 5)**: Automatically configures native Sony HID output reports to set electric cyan / neon blue lighting and player LEDs.
+* **Modern Frosted Glass UI (Dark Acrylic)**: Segmented option pill chips, real-time live telemetry badges, and interactive language toggles (Italian 🇮🇹 / English 🇬🇧).
+
+---
+
+## 📊 Real-Time Measured Telemetry
+
+| Metric | Description |
 | :--- | :--- |
-| **FPS & Frametime D3D12** | Framerate reale del motore di rendering e tempo di scansione GPU. |
-| **Polling Rate USB/BT** | Frequenza effettiva di invio pacchetti del controller in Hz (es. 250Hz, 500Hz, 1000Hz). |
-| **Latenza Input Controller** | Ritardo del ciclo di polling del controller (1000 / Hz). |
-| **Latenza Render D3D12** | Tempo di composizione ed emissione del frame DirectX 12. |
-| **Latenza Monitor Display** | Tempo medio di scansione dello schermo calcolato sui Hz reali del monitor (1000 / (2 × Hz)). |
-| **Latenza Hardware Levetta** | Ritardo fisico del sensore (Potenziometro / Hall Effect / TMR), inseribile da 0 a 100 ms. |
-| **Jitter + Ritardo Umano** | Variazione della curva di velocità del pollice umano rispetto al limite teorico. |
-| **Tempo Record (Best)** | Miglior tempo di reazione assoluto registrato durante la sessione. |
+| **D3D12 FPS & Frametime** | Real-time rendering framerate and GPU execution time. |
+| **USB/BT Polling Rate** | Measured controller packet transmission frequency in Hz (e.g., 250Hz, 500Hz, 1000Hz). |
+| **Controller Input Delay** | Polling cycle delay calculated as $1000 / \text{Hz}$. |
+| **D3D12 Render Latency** | Time taken by DirectX 12 to compose and submit the frame. |
+| **Display Monitor Latency** | Average display scanout delay calculated from active monitor refresh rate ($1000 / (2 \times \text{Hz})$). |
+| **Stick Hardware Latency** | Sensor delay (Potentiometer / Hall Effect / TMR), adjustable from 0 to 100 ms (measured via slow-mo camera). |
+| **Jitter + Human Delay** | Human thumb actuation velocity deviation relative to theoretical digital limits. |
+| **Best Record Time** | Lowest reaction time recorded during the active session. |
 
 ---
 
-## 🎮 Controller Supportati per Modalità di Input
+## 🎮 Supported Controllers by Input Mode
 
-ULT supporta qualsiasi gamepad collegato via **Cavo USB**, **Bluetooth** o **Ricevitore Wireless**, suddivisi in 4 modalità di input:
+ULT supports gamepads connected via **USB Cable**, **Bluetooth**, or **Wireless Adapters**, organized across 4 input modes:
 
 ```
-                              ┌─── 1. SONY RAWINPUT (1000Hz Nativo - DualShock 4 / DualSense 5)
+                              ┌─── 1. SONY RAWINPUT (1000Hz Native - DualShock 4 / DualSense 5)
                               ├─── 2. MICROSOFT XINPUT (Xbox Series X|S / Xbox One / Xbox 360)
-  ULT INPUT SUBSYSTEM ────────┼─── 3. DIRECTINPUT 8 (Retro Pad, Arcade Stick, Volanti)
-                              └─── 4. AUTO-DETECT (Priorità automatica alla latenza minore)
+  ULT INPUT SUBSYSTEM ────────┼─── 3. DIRECTINPUT 8 (Retro Gamepads, Arcade Sticks, Racing Wheels)
+                              └─── 4. AUTO-DETECT (Automatically selects lowest latency backend)
 ```
 
-### 1. 🔵 Sony Native RawInput (HID a 1000Hz)
-*Bypassa completamente i layer intermedi di Windows, leggendo i pacchetti HID grezzi da 64-byte a 1000Hz nativi con supporto Lightbar RGB.*
+### 1. 🔵 Sony Native RawInput (1000Hz HID)
+*Bypasses intermediate OS abstraction layers to directly read 64-byte HID raw input reports at 1000Hz with RGB Lightbar control.*
 * **Sony PlayStation DualSense 5** (USB & Bluetooth)
 * **Sony PlayStation DualSense 5 Edge** (USB & Bluetooth)
 * **Sony PlayStation DualShock 4 v1** (CUH-ZCT1, USB & Bluetooth)
 * **Sony PlayStation DualShock 4 v2** (CUH-ZCT2, USB & Bluetooth)
-* **Sony DualShock 4 USB Wireless Adapter Ufficiale**
-* Controller Custom e Pro-Gaming basati su chip Sony (Scuf Reflex, Nacon Revolution, Razer Raiju in modalità PS4/PS5).
+* **Official Sony DualShock 4 USB Wireless Adapter**
+* Custom and Pro-gaming controllers powered by Sony HID chipsets (Scuf Reflex, Nacon Revolution, Razer Raiju in PS4/PS5 mode).
 
 ### 2. 🟢 Microsoft XInput
-*Integrazione nativa a bassa latenza per l'intero ecosistema Xbox e controller Windows compatibili.*
-* **Xbox Wireless Controller (Series X|S)** (USB, Bluetooth, Xbox Wireless Adapter)
+*Low-overhead native integration for the Xbox ecosystem and Windows-compatible controllers.*
+* **Xbox Wireless Controller (Series X\|S)** (USB, Bluetooth, Xbox Wireless Adapter)
 * **Xbox Elite Wireless Controller Series 2 & Series 1**
-* **Xbox One Wireless Controller** (Revisioni Standard, S, X)
+* **Xbox One Wireless Controller** (Standard, S, X Revisions)
 * **Xbox 360 Controller** (Wired & Wireless)
-* Tutti i controller XInput di terze parti:
+* All third-party XInput-compatible gamepads:
   * Scuf Instinct / Envision
   * Razer Wolverine (V2, V2 Pro, Chroma)
   * Thrustmaster eSwap X / S Pro
   * GameSir (G7 SE, T4k, Kaleid)
-  * 8BitDo Ultimate (Versione Xbox / 2.4G)
-  * PDP Rematch, Victrix Gambit, PowerA Fusion Pro, Flydigi Vader/Apex (in modalità XInput).
+  * 8BitDo Ultimate (Xbox / 2.4G Edition)
+  * PDP Rematch, Victrix Gambit, PowerA Fusion Pro, Flydigi Vader/Apex (in XInput mode).
 
-### 3. 🟣 DirectInput 8 (Fallback Universale)
-*Supporto esteso per periferiche legacy, arcade stick e controller personalizzati.*
-* Fightstick e Arcade Stick (Sanwa, Hori Fighting Commander, Qanba, Mayflash)
-* Volanti e pedaliere da simulazione (Logitech G29/G920/G923, Thrustmaster T300/TX, Fanatec)
-* Gamepad retro e generici USB/Bluetooth (8BitDo in modalità DInput, iPega, SteelSeries, ecc.).
+### 3. 🟣 DirectInput 8 (Universal Fallback)
+*Broad compatibility for legacy controllers, fightsticks, and simulation hardware.*
+* Fightsticks & Arcade Sticks (Sanwa, Hori Fighting Commander, Qanba, Mayflash)
+* Simulation Racing Wheels & Pedals (Logitech G29/G920/G923, Thrustmaster T300/TX, Fanatec)
+* Generic USB / Bluetooth Gamepads (8BitDo in DInput mode, iPega, SteelSeries, etc.).
 
-### 4. ⚡ Auto-Detect (Consigliata)
-* Rileva all'istante il controller collegato e assegna automaticamente il backend a latenza più bassa (**Sony RawInput 1000Hz > XInput > DirectInput**).
-
----
-
-## 🕹️ Comandi e Scorciatoie
-
-### Da Controller:
-* **`OPTIONS` / `START`**: Apri / Chiudi Menu Impostazioni
-* **`D-PAD (Frecce Su/Giù)`**: Naviga tra le voci del menu
-* **`D-PAD (Frecce Sinistra/Destra)`**: Modifica il valore dell'opzione selezionata
-* **`✕` (PlayStation) / `A` (Xbox)**: Conferma selezione
-* **`◯` (PlayStation) / `B` (Xbox)**: Chiudi menu / Annulla
-* **`□` (PlayStation) / `X` (Xbox)**: Cambia levetta attiva da testare (**L3 Sinistra** ⇄ **R3 Destra**)
-* **`△` (PlayStation) / `Y` (Xbox)**: Reset cronometro e record
-
-### Da Tastiera:
-* **`ESC`**: Apri / Chiudi Menu Impostazioni
-* **`Frecce Direzionali (↑ / ↓ / ← / →)`**: Navigazione e modifica impostazioni
-* **`INVIO`**: Conferma selezione
-* **`Q`**: Cambia levetta attiva da testare (**L3** ⇄ **R3**)
-* **`R`**: Reset cronometro e record
-* **`0 - 9` (Tastierino Numerico)**: Digitazione diretta della latenza hardware levetta (0 - 100 ms)
-* **`F11`**: Alterna Schermo Intero / Finestra Desktop
+### 4. ⚡ Auto-Detect Mode (Recommended)
+* Instantly detects connected devices and assigns the lowest-latency backend available (**Sony RawInput 1000Hz > XInput > DirectInput**).
 
 ---
 
-## ⚙️ Opzioni di Configurazione nel Menu
+## 🕹️ Controls & Keybindings
 
-1. **Limite FPS**: `30`, `60`, `120`, `144`, `180`, `240`, `500`, `Illimitato`
-2. **Risoluzione**: `1080p`, `900p`, `720p`, `540p`
-3. **Qualità Grafica**: `Minima (Ultra Fast)`, `Media`, `Alta`
-4. **Tipo Collegamento**: `Auto`, `DS4 Nativo`, `DS5 Nativo`, `XInput`, `DirectInput`
-5. **Modalità Display**: `Finestra (Desktop)`, `Fullscreen Esclusivo (DirectFlip)`
-6. **V-Sync**: `Disabilitato (Latenza Minima)`, `Abilitato`
-7. **Lingua**: `Italiano 🇮🇹`, `English 🇬🇧`
-8. **Curva Risposta Levetta**: `Lineare (Analogica)`, `Istantanea (Max Speed Digitale)`
-9. **Latenza Hardware Levetta**: Regolabile o digitabile da tastiera (0 - 100 ms)
+### Gamepad Controls:
+* **`OPTIONS` / `START`**: Open / Close Settings Menu
+* **`D-PAD (Up / Down)`**: Navigate menu rows
+* **`D-PAD (Left / Right)`**: Modify selected option value
+* **`✕` (PlayStation) / `A` (Xbox)**: Confirm selection
+* **`◯` (PlayStation) / `B` (Xbox)**: Close menu / Cancel
+* **`□` (PlayStation) / `X` (Xbox)**: Toggle active testing stick (**L3 Left** ⇄ **R3 Right**)
+* **`△` (PlayStation) / `Y` (Xbox)**: Reset stopwatch timer and best record
+
+### Keyboard Shortcuts:
+* **`ESC`**: Open / Close Settings Menu
+* **`Arrow Keys (↑ / ↓ / ← / →)`**: Navigate and modify options
+* **`ENTER`**: Confirm selection
+* **`Q`**: Toggle active testing stick (**L3** ⇄ **R3**)
+* **`R`**: Reset stopwatch timer and best record
+* **`0 - 9` (Numpad / Number keys)**: Direct typing of stick hardware latency (0 - 100 ms)
+* **`F11`**: Toggle Fullscreen / Windowed Desktop mode
 
 ---
 
-## 🛠️ Come Compilare dal Codice Sorgente
+## ⚙️ Configuration Menu Options
 
-### Requisiti:
-* **Windows 10 / 11 a 64-bit**
-* **Visual Studio 2019 / 2022** con il carico di lavoro *"Sviluppo di applicazioni desktop con C++"* (MSVC v142/v143 e Windows 10/11 SDK).
+1. **FPS Limit**: `30`, `60`, `120`, `144`, `180`, `240`, `500`, `Unlimited`
+2. **Resolution**: `1080p`, `900p`, `720p`, `540p`
+3. **Graphics Quality**: `Low (Ultra Fast)`, `Medium`, `High`
+4. **Input Connection**: `Auto`, `DS4 Native`, `DS5 Native`, `XInput`, `DirectInput`
+5. **Display Mode**: `Windowed (Desktop)`, `Exclusive Fullscreen (DirectFlip)`
+6. **V-Sync**: `Disabled (Lowest Latency)`, `Enabled`
+7. **Language**: `Italiano 🇮🇹`, `English 🇬🇧`
+8. **Stick Response Curve**: `Linear (Analog)`, `Instant (Max Speed Digital)`
+9. **Stick Hardware Latency**: Adjustable or directly typeable with number keys (0 - 100 ms)
 
-### Compilazione a un clic:
-1. Clona il repository:
+---
+
+## 🛠️ Building from Source
+
+### Prerequisites:
+* **Windows 10 / 11 64-bit**
+* **Visual Studio 2019 / 2022** with *"Desktop development with C++"* workload (MSVC v142/v143 & Windows 10/11 SDK).
+
+### One-Click Build:
+1. Clone the repository:
    ```bash
-   git clone https://github.com/tuo-username/ULT-Ultimate-Latency-Tester.git
+   git clone https://github.com/your-username/ULT-Ultimate-Latency-Tester.git
    cd ULT-Ultimate-Latency-Tester
    ```
-2. Esegui lo script:
+2. Run the build script:
    ```bat
    build.bat
    ```
-3. Verrà generato l'eseguibile unico autonomo **`ULT Ultimate Latency Tester.exe`** pronto all'uso!
+3. The standalone executable **`ULT Ultimate Latency Tester.exe`** will be generated and ready to run!
 
 ---
 
-## 📄 Licenza
+## 📄 License
 
-Questo progetto è distribuito sotto licenza **MIT** (o licenza a scelta). Consulta il file `LICENSE` per i dettagli.
+This project is licensed under the **MIT License** (or chosen license). See the `LICENSE` file for details.
 
 <p align="center">
-  <em>Sviluppato con passione per la community di gaming, esports e hardware tuning.</em>
+  <em>Developed with passion for the esports, gaming, and controller hardware communities.</em>
 </p>
